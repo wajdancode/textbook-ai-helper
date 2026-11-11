@@ -119,11 +119,13 @@ CHAPTER CONTENT:
 """
 
     try:
-        response = client.chat.completions.create(
-            model="llama3-8b-8192",
-            messages=[{"role": "user", "content": prompt}],
-            temperature=0.6,
-            max_tokens=3500
+       response = client.chat.completions.create(
+        model="llama-3.1-8b-instant",  # ← UPDATED MODEL NAME
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0.6,
+        max_tokens=3500
+)
+
         )
         content = response.choices[0].message.content.strip()
 
