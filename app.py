@@ -180,7 +180,7 @@ def generate_questions_fallback(chapter_text: str, lang: str, num_mcq=3, num_sho
 
     if sentences:
         topic = sentences[0][:min(70, len(sentences[0]))]
-        summary = " ".join(sentences[:min(4, len(sentences)))])
+        summary = " ".join(sentences[:min(4, len(sentences))])
         questions.append({
             "type": "Long Question",
             "question": "Explain in detail: " + topic + "...",
