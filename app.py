@@ -126,7 +126,7 @@ CHAPTER CONTENT:
         max_tokens=3500
 )
 
-        )
+        
         content = response.choices[0].message.content.strip()
 
         # Extract JSON safely
