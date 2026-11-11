@@ -2,6 +2,7 @@ import streamlit as st
 import io
 import re
 import os
+import json
 from typing import List, Dict
 
 # ----------------------
@@ -119,20 +120,17 @@ CHAPTER CONTENT:
 """
 
     try:
-       response = client.chat.completions.create(
-        model="llama-3.1-8b-instant",  # ← UPDATED MODEL NAME
-        messages=[{"role": "user", "content": prompt}],
-        temperature=0.6,
-        max_tokens=3500
-)
-
-        
+        response = client.chat.completions.create(
+            model="llama-3.1-8b-instant",
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.6,
+            max_tokens=3500
+        )
         content = response.choices[0].message.content.strip()
 
         # Extract JSON safely
         json_match = re.search(r'\[.*\]', content, re.DOTALL)
         if json_match:
-            import json
             return json.loads(json_match.group())
         else:
             st.warning("⚠️ Could not parse AI response. Using built-in generator instead.")
@@ -182,7 +180,7 @@ def generate_questions_fallback(chapter_text: str, lang: str, num_mcq=3, num_sho
 
     if sentences:
         topic = sentences[0][:min(70, len(sentences[0]))]
-        summary = " ".join(sentences[:min(4, len(sentences))])
+        summary = " ".join(sentences[:min(4, len(sentences)))])
         questions.append({
             "type": "Long Question",
             "question": "Explain in detail: " + topic + "...",
